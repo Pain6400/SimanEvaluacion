@@ -21,9 +21,6 @@ export const bodyLoginValidator = [
 ];
 
 export const bodyUserValidator = [
-    body('empresa_id', "Campo requerido")
-    .notEmpty()
-    .trim(),
     body('usuario_id', "Campo requerido")
     .notEmpty()
     .trim(),
@@ -60,6 +57,45 @@ export const bodyUsuarioPermisoValidator = [
     .notEmpty()
     .trim(),
     body('permisoId', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    validationResultExpress
+]
+
+export const bodyColaboradorValidator = [
+    body('colaborador_id', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    body('sucursal_id', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    body('distancia_km', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    validationResultExpress
+];
+
+export const bodyViajeValidator = [
+    body('sucursal_id', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    body('transportista_id', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    body('colaboradores', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    validationResultExpress
+]
+
+export const bodyReporteValidator = [
+    body('transportista_id', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    body('fecha_inicio', "Campo requerido")
+    .notEmpty()
+    .trim(),
+    body('fecha_fin', "Campo requerido")
     .notEmpty()
     .trim(),
     validationResultExpress

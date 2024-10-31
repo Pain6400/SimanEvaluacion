@@ -8,12 +8,11 @@ export const generateToken = async (uid, res) => {
         const user = await userModel.findOne(uid);
         if (!user) throw new Error("Usuario no encontrado");
 
-        const profiles = await securityModel.findProfilesByUserId(uid);
         const permissions = await securityModel.findPermissionsByUserId(uid);
         const flattenedPermissions = [].concat(...permissions).map(p => p.permiso_id);
 
         const token = jwt.sign(
-            { uid, roles: profiles.map(p => p.perfil_id), permissions: flattenedPermissions },
+            { uid, permissions: flattenedPermissions },
             process.env.JWT_SECRET,
             { expiresIn }
         );

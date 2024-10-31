@@ -53,7 +53,7 @@ const getUsuariosPermisos = async () => {
 
 const createUsuarioPermiso = async (usuario_id, permiso_id) => {
   const query = `INSERT INTO USUARIOS_PERMISOS (usuario_id, permiso_id) 
-  VALUES ($1, $2, $3) 
+  VALUES ($1, $2) 
   RETURNING *`;
 
   const { rows } = await pool.query(query, [usuario_id, permiso_id]);
@@ -110,20 +110,6 @@ const updateUsuario = async (usuario) => {
   return rows[0];
 };
 
-const findProfilesByUserId = async (userid) => {
-  try {
-    const query = `
-      SELECT p.*
-      FROM perfiles p
-      INNER JOIN usuarios_perfiles up ON p.perfil_id = up.perfil_id
-      WHERE up.usuario_id = $1
-  `;
-    const { rows } = await pool.query(query, [userid]);
-    return rows;
-  } catch (error) {
-    console.log("findProfilesByUserId" + error);
-  }
-};
 
 const findPermissionsByUserId = async (userid) => {
   try {
@@ -150,6 +136,5 @@ export const securityModel = {
   getUsuarios,
   createUsuario,
   updateUsuario,
-  findProfilesByUserId,
   findPermissionsByUserId
 };

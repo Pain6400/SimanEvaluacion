@@ -7,9 +7,9 @@ const router = Router();
 
 //Permisos
 router.get("/getPermisos", verifyToken, checkPermission(['Admin', 'SuperAdmin']), securityController.getPermisos);
-router.post("/createPermiso", verifyToken, checkPermission(['SuperAdmin']), bodyPermisoValidator, securityController.createPermiso);
-router.post("/updatePermiso", verifyToken, checkPermission(['SuperAdmin']), bodyPermisoValidator, securityController.UpdatePermiso);
-router.post("/DeletePermiso/:permiso_id", verifyToken, checkPermission(['SuperAdmin']), securityController.DeletePermiso);
+router.post("/createPermiso", verifyToken, checkPermission(['Admin']), bodyPermisoValidator, securityController.createPermiso);
+router.post("/updatePermiso", verifyToken, checkPermission(['Admin']), bodyPermisoValidator, securityController.UpdatePermiso);
+router.post("/DeletePermiso/:permiso_id", verifyToken, checkPermission(['Admin']), securityController.DeletePermiso);
 
 //Usuario Permisos
 router.get("/getUsuariosPermisos", verifyToken, checkPermission(['Admin']), securityController.getUsuariosPermisos);

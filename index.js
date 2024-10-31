@@ -5,6 +5,7 @@ import cors from "cors";
 import accountRoute from "./routes/account.route.js";
 import userRoute from "./routes/user.route.js";
 import securityRoute from "./routes/security.route.js"
+import viajesRoute from "./routes/viajes.router.js"
 
 const app = express();
 
@@ -29,7 +30,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(apiPath + "/account", accountRoute);
 app.use(apiPath + "/user", userRoute);
-app.use(apiPath + "/security", securityRoute);
+app.use(apiPath + "/viajes", viajesRoute);
+
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log("http://localhost:" + PORT))
+app.listen(PORT, () => console.log("http://localhost:" + PORT + apiPath))
